@@ -1,0 +1,47 @@
+cat > .gitignore << 'EOF'
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+
+# Asset exceptions (allow tracked fonts/themes)
+!assets/fonts/
+!assets/themes/
+
+# Exclude font/theme backups
+assets/*.bak
+EOF
+
+# Kivy-specific files
+.kivy/
+*.kv
+
+# Logs and databases
+*.log
+*.sqlite
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# IDE specific files
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Temp directories
+temp/
+tmp/
+build/
+dist/
+
+# Virtual environment
+venv/
+ENV/
+
+# Debug files
+*.debug
+EOF
+

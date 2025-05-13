@@ -1,0 +1,22 @@
+{
+    "theme_name": "retro",
+    "primary_palette": "Amber",
+    "primary_hue": "700",
+    "accent_palette": "Brown",
+    "theme_style": "Light",
+    "syntax": {
+        "background": "#f5e8c9",
+        "text": { "color": "#3a291d", "style": "normal" },
+        "keyword": { "color": "#8b4513", "style": "bold" },
+        "builtin": { "color": "#a0522d", "style": "normal" },
+        "string": { "color": "#b5651d", "style": "normal" },
+        "number": { "color": "#a0522d", "style": "normal" },
+        "comment": { "color": "#c49a6c", "style": "italic" },
+        "operator": { "color": "#8b4513", "style": "normal" },
+        "definition": { "color": "#8b4513", "style": "bold" },
+        "line_numbers": { "color": "#d2b48c", "style": "normal" },
+        "current_line": { "color": "#e6d5b8", "style": "normal" },
+        "selection": { "color": "#e0c9a6", "style": "normal" },
+        "error": { "color": "#CC0000", "style": "bold" }
+    }
+}

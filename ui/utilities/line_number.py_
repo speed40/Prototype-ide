@@ -1,0 +1,219 @@
+# ui/utilities/line_number.py
+
+from kivy.core.text import DEFAULT_FONT, Label
+from kivy.graphics import Color, Rectangle, BorderImage
+from kivy.uix.widget import Widget
+from kivy.uix.scrollview import ScrollView
+from kivy.uix.textinput import TextInput
+from kivy.properties import (
+    StringProperty, NumericProperty, ColorProperty,
+    OptionProperty, ListProperty, VariableListProperty
+)
+from kivy.logger import Logger
+from kivy.metrics import sp
+from kivy.clock import Clock
+
+
+class LineNumber(Widget):
+    align = OptionProperty('right', options=['left', 'center', 'right'])
+    background_color = ColorProperty([0.9, 0.9, 0.9, 1])
+    background_texture = StringProperty('atlas://data/images/defaulttheme/textinput')
+    border = ListProperty([4, 4, 4, 4])
+    font_name = StringProperty(DEFAULT_FONT)
+    font_size = NumericProperty('15sp')
+    foreground_color = ColorProperty([0.2, 0.2, 0.2, 1])
+    padding = VariableListProperty([4, 4]) # Using [horizontal, vertical]
+    width_min = NumericProperty('24sp')
+
+    def __init__(self, text_input, **kwargs):
+        super().__init__(**kwargs)
+        self.size_hint_x = None
+        self.__text_input = text_input
+        self.__desired_number_width = 0
+        self._scroll_view_parent = None
+        self.__line_count = 1
+        self.__prev_text = "" # To track actual text changes for line count update
+
+        self.__bind()
+        self._update_font() # Calculate font metrics initially
+        Clock.schedule_once(self._trigger_line_number_update, 0) # Schedule initial update
+
+    def __bind(self):
+        """Bind properties to update line numbers and scrollview."""
+        self.bind(
+            align=self._trigger_line_number_update,
+            background_color=self._trigger_line_number_update,
+            # Re-added bindings for visual properties for completeness
+            background_texture=self._trigger_line_number_update,
+            border=self._trigger_line_number_update,
+            foreground_color=self._trigger_line_number_update,
+            padding=self._trigger_line_number_update,
+            width=self._trigger_line_number_update,
+            font_size=self._update_font, # Font size changes impact width, so re-run font update
+            font_name=self._update_font, # Font name changes impact width, so re-run font update
+        )
+
+        self.__text_input.bind(
+            text=self._on_text_change, # Custom handler for text changes
+            size=self._trigger_line_number_update,
+            pos=self._trigger_line_number_update,
+            parent=self._sync_scroll
+        )
+        # Note: scroll_y is handled by _sync_scroll binding to ScrollView parent
+
+    def _on_text_change(self, instance, text):
+        """Track text changes to update line count and trigger redraw if needed."""
+        # Only update line count if text actually changed to avoid redundant splits
+        if text != self.__prev_text:
+            self.__line_count = max(1, len(text.splitlines()))
+            self.__prev_text = text
+            # Trigger a full update as line count impacts width and drawing
+            self._trigger_line_number_update()
+
+    def _trigger_line_number_update(self, *args):
+        """Schedules the line number update for the next frame."""
+        Clock.unschedule(self._update_line_numbers) # Prevent multiple pending updates
+        Clock.schedule_once(self._update_line_numbers, 0) # Schedule for next frame
+
+    def _sync_scroll(self, instance, parent):
+        """Find and bind to the ScrollView parent for scroll_y changes."""
+        # Unbind from any previously found ScrollView to avoid multiple bindings
+        if self._scroll_view_parent:
+            try:
+                self._scroll_view_parent.unbind(scroll_y=self._trigger_line_number_update)
+            except KeyError: # Occurs if binding wasn't active (e.g., unbinded elsewhere)
+                pass # No biggie, just continue
+
+        self._scroll_view_parent = None # Reset
+        current_parent = parent
+        while current_parent:
+            if isinstance(current_parent, ScrollView):
+                self._scroll_view_parent = current_parent
+                # Bind scroll_y to trigger line number updates
+                current_parent.bind(scroll_y=self._trigger_line_number_update)
+                break # Found it, break the loop
+            current_parent = current_parent.parent
+
+        # Trigger an update immediately after binding/unbinding
+        self._trigger_line_number_update()
+
+    def _update_font(self, *_):
+        """Calculates font metrics and updates widget width based on font."""
+        sizes = []
+        for number in range(10): # Check sizes for digits 0-9
+            label = Label(
+                text=str(number),
+                font_size=self.font_size,
+                font_name=self.font_name
+            )
+            label.refresh()
+            sizes.append(label.texture.size[0])
+        self.__desired_number_width = max(sizes)
+
+        # Update width based on expected max line count (initial guess)
+        # This will be refined in _update_line_numbers for the actual line count
+        self.width = max(
+            self.width_min,
+            self.padding[0] + self.padding[1] + self.__desired_number_width * 2
+        )
+        # No need to trigger _update_line_numbers here, __bind already handles font changes.
+
+
+    def __draw_line_number(self, number, y_pos):
+        """Draws a single line number label on the canvas."""
+        label = Label(
+            text=str(number),
+            color=self.foreground_color,
+            font_size=self.font_size,
+            font_name=self.font_name
+        )
+        label.refresh()
+        texture = label.texture
+        size = texture.size
+
+        if self.align == "left":
+            x = self.padding[0]
+        elif self.align == "right":
+            x = self.width - size[0] - self.padding[1] # padding[1] for horizontal right padding
+        else: # center
+            x = (self.width - size[0]) / 2
+
+        Rectangle(
+            texture=texture,
+            pos=(self.x + x, self.y + y_pos),
+            size=size,
+            tex_coords=[0, 1, 1, 1, 1, 0, 0, 0]
+        )
+
+    def _update_line_numbers(self, *_):
+        """Clears and redraws all line numbers."""
+        self.canvas.clear()
+
+        with self.canvas:
+            Color(*self.background_color)
+            BorderImage(
+                source=self.background_texture,
+                pos=self.pos,
+                size=self.size,
+                border=self.border
+            )
+
+            # Calculate width based on the current logical line count
+            self.width = max(
+                self.width_min,
+                self.padding[0] + self.padding[1] +
+                self.__desired_number_width * len(str(max(1, self.__line_count)))
+            )
+
+            text = self.__text_input.text
+            logical_lines = text.splitlines()
+            # Handle empty text case - ensure at least line 1 is shown
+            if not logical_lines:
+                 logical_lines = [""]
+
+            # Get the character indices for the start of each logical line
+            char_start_indices = [0]
+            current_search_index = 0
+            while True:
+                newline_index = text.find('\n', current_search_index)
+                if newline_index == -1:
+                    break # No more newlines
+                char_start_indices.append(newline_index + 1)
+                current_search_index = newline_index + 1
+
+            # Iterate through logical lines and calculate their drawing positions
+            for i in range(len(logical_lines)):
+                start_index = char_start_indices[i]
+
+                try:
+                    # Get the visual cursor position (row, col) for this character index.
+                    visual_pos = self.__text_input.get_cursor_from_index(start_index)
+                    visual_row = visual_pos[1] # visual_row is the y-index in the TextInput's visual grid
+                except IndexError:
+                    Logger.warning(f"LineNumber: Could not get cursor position for index {start_index}. Skipping line {i+1}.")
+                    continue
+
+                # Calculate the y position for drawing on the LineNumber widget's canvas.
+                # This aligns the bottom of the line number with the bottom of the text line.
+                # (TextInput's top - its top padding) is the top of the text area.
+                # Subtracting (visual_row + 1) * line_height from that gives the bottom of the visual line.
+                # Then, subtract self.y to convert to LineNumber's local coordinates.
+                drawing_y = (self.__text_input.top - self.__text_input.padding[1]) - \
+                            ((visual_row + 1) * self.__text_input.line_height) - self.y
+
+                self.__draw_line_number(i + 1, drawing_y)
+
+
+    def set_scroll_view(self, scroll_view):
+        """Manually sets the ScrollView parent. Useful if auto-detection fails."""
+        # This method provides an external way to set the ScrollView, mirroring _sync_scroll's logic.
+        if self._scroll_view_parent:
+            try:
+                self._scroll_view_parent.unbind(scroll_y=self._trigger_line_number_update)
+            except KeyError:
+                pass # Already unbound, or not found. No error.
+
+        self._scroll_view_parent = scroll_view
+        if scroll_view:
+            scroll_view.bind(scroll_y=self._trigger_line_number_update)
+            self._trigger_line_number_update()

@@ -1,0 +1,53 @@
+{
+    "language": "generic",
+    "comment": null,
+    "block_comment": [null, null],
+    "indent": "    ",
+    "indent_triggers": [
+        "\\{\\s*$",
+        "\\(\\s*$",
+        "\\[\\s*$",
+        "\\bdo\\s*$",
+        "\\bthen\\s*$",
+        "\\belse\\s*$",
+        "\\bfunction\\b.*$",
+        "\\bclass\\b.*$"
+    ],
+    "dedent_triggers": [
+        "^\\s*\\}",
+        "^\\s*\\)",
+        "^\\s*\\]",
+        "^\\s*\\bend\\b",
+        "^\\s*\\belse\\b",
+        "^\\s*\\belif\\b"
+    ],
+    "definitions": {
+        "function": null,
+        "class": null,
+        "lambda": null
+    },
+    "symbol_patterns": {
+        "variable": null,
+        "param": null,
+        "import": null
+    },
+    "syntax_tokens": {
+        "keyword": "\\b(if|else|for|while|do|begin|end|function|procedure|return|break|continue|true|false|null)\\b",
+        "operator": "[+\\-*/%&|^~<>!=]+",
+        "comment": "#.*$",
+        "string": "\"[^\"]*\"|'[^']*'",
+        "number": "\\b\\d+(\\.\\d+)?\\b"
+    },
+    "suggestions_categorized": {
+        "keywords": [
+            "if", "else", "for", "while", "do", "begin", "end", "function",
+            "procedure", "return", "break", "continue", "true", "false", "null"
+        ],
+        "operators": [
+            "+", "-", "*", "/", "=", "==", "!=", "<", ">", "<=", ">="
+        ],
+        "literals": [
+            "true", "false", "null"
+        ]
+    }
+}

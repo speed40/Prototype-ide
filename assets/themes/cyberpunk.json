@@ -1,0 +1,22 @@
+{
+    "theme_name": "cyberpunk",
+    "primary_palette": "Purple",
+    "primary_hue": "A400",
+    "accent_palette": "Pink",
+    "theme_style": "Dark",
+    "syntax": {
+        "background": "#0d001a",
+        "text": { "color": "#EEEEEE", "style": "normal" },
+        "keyword": { "color": "#ff00ff", "style": "bold" },
+        "builtin": { "color": "#A020F0", "style": "normal" },
+        "string": { "color": "#ff3399", "style": "normal" },
+        "number": { "color": "#39FF14", "style": "normal" },
+        "comment": { "color": "#663399", "style": "italic" },
+        "operator": { "color": "#ff00ff", "style": "normal" },
+        "definition": { "color": "#00E5E5", "style": "bold" },
+        "line_numbers": { "color": "#4d0099", "style": "normal" },
+        "current_line": { "color": "#1a0033", "style": "normal" },
+        "selection": { "color": "#330066", "style": "normal" },
+        "error": { "color": "#FF3333", "style": "bold" }
+    }
+}

@@ -1,0 +1,80 @@
+{
+    "language": "python",
+    "comment": "#",
+    "block_comment": ["\"\"\"", "\"\"\""],
+    "indent": "    ",
+    "indent_triggers": [":\\s*$"],
+    "dedent_triggers": [
+        "^\\s*(return|pass|raise|continue|break|yield)\\b",
+        "^\\s*(elif|else|except|finally)\\b"
+    ],
+    "definitions": {
+        "function": "^\\s*(async\\s+)?def\\s+(\\w+)\\s*\\(([^)]*)\\)\\s*:",
+        "class": "^\\s*class\\s+(\\w+)\\s*(?:\\(([^)]*)\\))?\\s*:",
+        "lambda": "lambda\\s+([^:]+)\\s*:"
+    },
+    "symbol_patterns": {
+        "variable": "\\b(\\w+)\\s*=",
+        "param": "\\b(\\w+)\\s*(?=[,)])",
+        "import": "^\\s*import\\s+(\\w+)|^\\s*from\\s+\\w+\\s+import\\s+(\\w+)"
+    },
+    "syntax_tokens": {
+        "keyword": "\\b(False|None|True|and|as|assert|async|await|break|class|continue|def|del|elif|else|except|finally|for|from|global|if|import|in|is|lambda|nonlocal|not|or|pass|raise|return|try|while|with|yield)\\b",
+        "string": "\"\"\"[\\s\\S]*?\"\"\"|'''[\\s\\S]*?'''|\"[^\"\\\\]*(?:\\\\.[^\"\\\\]*)*\"|'[^'\\\\]*(?:\\\\.[^'\\\\]*)*'",
+        "number": "\\b\\d+\\.?\\d*(?:e[+-]?\\d+)?\\b|\\b0x[\\da-fA-F]+\\b|\\b0o[0-7]+\\b|\\b0b[01]+\\b",
+        "comment": "#.*$",
+        "function": "\\bdef\\s+(\\w+)",
+        "class": "\\bclass\\s+(\\w+)",
+        "operator": "[+\\-*/%&|^~<>!]=?|\\b(and|or|not|is|in)\\b",
+        "decorator": "^\\s*@\\w+",
+        "magic_method": "__\\w+__"
+    },
+    "suggestions_categorized": {
+        "keywords": [
+            "False", "None", "True", "and", "as", "assert", "async", "await",
+            "break", "class", "continue", "def", "del", "elif", "else", "except",
+            "finally", "for", "from", "global", "if", "import", "in", "is",
+            "lambda", "nonlocal", "not", "or", "pass", "raise", "return",
+            "try", "while", "with", "yield"
+        ],
+        "builtins": [
+            "abs", "all", "any", "ascii", "bin", "bool", "breakpoint", "bytearray",
+            "bytes", "callable", "chr", "classmethod", "compile", "complex",
+            "delattr", "dict", "dir", "divmod", "enumerate", "eval", "exec",
+            "filter", "float", "format", "frozenset", "getattr", "globals",
+            "hasattr", "hash", "help", "hex", "id", "input", "int", "isinstance",
+            "issubclass", "iter", "len", "list", "locals", "map", "max", "memoryview",
+            "min", "next", "object", "oct", "open", "ord", "pow", "print", "property",
+            "range", "repr", "reversed", "round", "set", "setattr", "slice",
+            "sorted", "staticmethod", "str", "sum", "super", "tuple", "type",
+            "vars", "zip"
+        ],
+        "exceptions": [
+            "ArithmeticError", "AssertionError", "AttributeError", "BaseException",
+            "BufferError", "BytesWarning", "ChildProcessError", "ConnectionAbortedError",
+            "ConnectionError", "ConnectionRefusedError", "ConnectionResetError",
+            "DeprecationWarning", "EOFError", "Ellipsis", "EnvironmentError",
+            "Exception", "FileExistsError", "FileNotFoundError", "FloatingPointError",
+            "FutureWarning", "GeneratorExit", "ImportError", "ImportWarning",
+            "IndentationError", "IndexError", "InterruptedError", "IsADirectoryError",
+            "KeyboardInterrupt", "KeyError", "LookupError", "MemoryError",
+            "ModuleNotFoundError", "NameError", "NotADirectoryError", "NotImplemented",
+            "NotImplementedError", "OSError", "OverflowError", "PendingDeprecationWarning",
+            "PermissionError", "ProcessLookupError", "RecursionError", "ReferenceError",
+            "ResourceWarning", "RuntimeError", "RuntimeWarning", "StopAsyncIteration",
+            "StopIteration", "SyntaxError", "SyntaxWarning", "SystemError",
+            "SystemExit", "TabError", "TimeoutError", "TypeError", "UnboundLocalError",
+            "UnicodeDecodeError", "UnicodeEncodeError", "UnicodeError", "UnicodeTranslateError",
+            "UnicodeWarning", "UserWarning", "ValueError", "Warning", "ZeroDivisionError"
+        ],
+        "operators": [
+            "+", "-", "*", "/", "//", "%", "**",
+            "<<", ">>",
+            "&", "|", "^", "~",
+            "<", ">", "<=", ">=", "==", "!=",
+            "=", "+=", "-=", "*=", "/=", "//=", "%=", "**=",
+            "&=", "|=", "^=", ">>=", "<<=",
+            "is", "is not", "in", "not in"
+        ]
+    }
+}

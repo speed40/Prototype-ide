@@ -1,0 +1,62 @@
+{
+    "language": "csharp",
+    "comment": "//",
+    "block_comment": ["/*", "*/"],
+    "indent": "    ",
+    "indent_triggers": ["{\\s*$", "\\(\\s*$", "=>\\s*$"],
+    "dedent_triggers": ["^\\s*}\\s*$", "^\\s*\\)\\s*;?\\s*$"],
+    "definitions": {
+        "method": "^\\s*(?:public|private|protected|internal|static|virtual|override|abstract|sealed|readonly|async)\\s+(?:[\\w?]+(?:<[^>]+>)?(?:[\\[\\]])?)\\s*(\\w+)\\s*\\(([^)]*)\\)\\s*(?:{|;)",
+        "class": "class\\s+(\\w+)\\s*(?::\\s*[^{]*)?\\s*{",
+        "interface": "interface\\s+(\\w+)\\s*{",
+        "struct": "struct\\s+(\\w+)\\s*{",
+        "enum": "enum\\s+(\\w+)\\s*{",
+        "lambda": "\\(([^)]*)\\)\\s*=>"
+    },
+    "symbol_patterns": {
+        "variable": "(?:[\\w?]+(?:<[^>]+>)?(?:[\\[\\]])?|\\bvar|\\bconst)\\s+(\\w+)\\s*=",
+        "param": "\\b(\\w+)\\s*(?=[,)])",
+        "import": "using\\s+([^;]+);"
+    },
+    "syntax_tokens": {
+        "keyword": "\\b(abstract|as|async|await|base|break|case|catch|checked|class|const|continue|default|delegate|do|else|enum|event|explicit|extern|false|finally|fixed|for|foreach|goto|if|implicit|in|interface|internal|is|lock|namespace|new|null|object|operator|out|override|params|private|protected|public|readonly|ref|return|sealed|sizeof|stackalloc|static|struct|switch|this|throw|true|try|typeof|unchecked|unsafe|using|var|virtual|void|volatile|while)\\b",
+        "string": "\"([^\"\\\\]|\\\\.)*\"|@\"[^\"]*\"|'([^'\\\\]|\\\\.)'",
+        "number": "\\b\\d+(?:\\.\\d+)?(?:e[+-]?\\d+)?[fFdDmM]?\\b|\\b0x[\\da-fA-F]+\\b",
+        "comment": "//.*$|/\\*[\\s\\S]*?\\*/|///.*$",
+        "function": "\\b(\\w+)\\s*\\([^)]*\\)",
+        "class": "\\b(class|interface|struct|enum)\\s+(\\w+)",
+        "operator": "[+\\-*/%&|^~<>!]=?|\\?\\?|\\.\\.\\.|&&|\\|\\|",
+        "attribute": "\\[(\\w+)\\]",
+        "type": "\\b(bool|byte|char|decimal|double|float|int|long|sbyte|short|uint|ulong|ushort|void|object|string|dynamic)\\b"
+    },
+    "suggestions_categorized": {
+        "keywords": [
+            "abstract", "as", "async", "await", "base", "break", "case", "catch",
+            "checked", "class", "const", "continue", "default", "delegate", "do",
+            "else", "enum", "event", "explicit", "extern", "false", "finally",
+            "fixed", "for", "foreach", "goto", "if", "implicit", "in", "interface",
+            "internal", "is", "lock", "namespace", "new", "null", "object", "operator",
+            "out", "override", "params", "private", "protected", "public", "readonly",
+            "ref", "return", "sealed", "sizeof", "stackalloc", "static", "struct",
+            "switch", "this", "throw", "true", "try", "typeof", "unchecked", "unsafe",
+            "using", "var", "virtual", "void", "volatile", "while"
+        ],
+        "types": [
+            "bool", "byte", "char", "decimal", "double", "float", "int",
+            "long", "sbyte", "short", "struct", "uint", "ulong", "ushort",
+            "object", "string", "dynamic"
+        ],
+        "operators": [
+            "+", "-", "*", "/", "%",
+            "++", "--",
+            "=", "+=", "-=", "*=", "/=", "%=",
+            "&=", "|=", "^=", "<<=", ">>=",
+            "==", "!=", "<", ">", "<=", ">=",
+            "&&", "||", "!",
+            "?", ":",
+            "??",
+            "?.",
+            "as", "is"
+        ]
+    }
+}

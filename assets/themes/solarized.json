@@ -1,0 +1,22 @@
+{
+    "theme_name": "solarized",
+    "primary_palette": "Teal",
+    "primary_hue": "800",
+    "accent_palette": "Amber",
+    "theme_style": "Dark",
+    "syntax": {
+        "background": "#00212b",
+        "text": { "color": "#93a1a1", "style": "normal" },
+        "keyword": { "color": "#759900", "style": "bold" },
+        "builtin": { "color": "#a57900", "style": "normal" },
+        "string": { "color": "#2aa198", "style": "normal" },
+        "number": { "color": "#d33682", "style": "normal" },
+        "comment": { "color": "#586e75", "style": "italic" },
+        "operator": { "color": "#759900", "style": "normal" },
+        "definition": { "color": "#268bd2", "style": "bold" },
+        "line_numbers": { "color": "#073642", "style": "normal" },
+        "current_line": { "color": "#073642", "style": "normal" },
+        "selection": { "color": "#0a4b5a", "style": "normal" },
+        "error": { "color": "#CC2222", "style": "bold" }
+    }
+}

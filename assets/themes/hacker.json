@@ -1,0 +1,22 @@
+{
+    "theme_name": "hacker",
+    "primary_palette": "Green",
+    "primary_hue": "A700",
+    "accent_palette": "LightGreen",
+    "theme_style": "Dark",
+    "syntax": {
+        "background": "#000000",
+        "text": { "color": "#00FF66", "style": "normal" },
+        "keyword": { "color": "#00FF00", "style": "bold" },
+        "builtin": { "color": "#00CC44", "style": "normal" },
+        "string": { "color": "#00EE55", "style": "normal" },
+        "number": { "color": "#00BFFF", "style": "normal" },
+        "comment": { "color": "#00AABB", "style": "italic" },
+        "operator": { "color": "#00FF00", "style": "normal" },
+        "definition": { "color": "#00FF00", "style": "bold" },
+        "line_numbers": { "color": "#003311", "style": "normal" },
+        "current_line": { "color": "#001100", "style": "normal" },
+        "selection": { "color": "#002200", "style": "normal" },
+        "error": { "color": "#FF4444", "style": "bold" }
+    }
+}

@@ -1,0 +1,22 @@
+{
+    "theme_name": "ice",
+    "primary_palette": "Cyan",
+    "primary_hue": "600",
+    "accent_palette": "Blue",
+    "theme_style": "Light",
+    "syntax": {
+        "background": "#f0f9ff",
+        "text": { "color": "#002b4d", "style": "normal" },
+        "keyword": { "color": "#0066cc", "style": "bold" },
+        "builtin": { "color": "#0088cc", "style": "normal" },
+        "string": { "color": "#0077bb", "style": "normal" },
+        "number": { "color": "#0088cc", "style": "normal" },
+        "comment": { "color": "#66b3ff", "style": "italic" },
+        "operator": { "color": "#0066cc", "style": "normal" },
+        "definition": { "color": "#0066cc", "style": "bold" },
+        "line_numbers": { "color": "#99ccff", "style": "normal" },
+        "current_line": { "color": "#d9ecff", "style": "normal" },
+        "selection": { "color": "#c2e0ff", "style": "normal" },
+        "error": { "color": "#FF3333", "style": "bold" }
+    }
+}

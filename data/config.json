@@ -1,0 +1,25 @@
+{
+    "theme": {
+        "current_theme": "default",
+        "theme_style": "Dark",
+        "primary_palette": "Blue",
+        "accent_palette": "Blue"
+    },
+    "language": {
+        "current_language": "python",
+        "ui_language": "en"
+    },
+    "editor": {
+        "tab_spaces": 4,
+        "font_name": "JetBrains Mono",
+        "font_size": 16,
+        "line_limit": 15
+    },
+    "console": {
+        "font_name": "JetBrains Mono",
+        "font_size": 14
+    },
+     "general": {
+        "auto_save": true
+    }
+}

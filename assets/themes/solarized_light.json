@@ -1,0 +1,22 @@
+{
+    "theme_name": "solarized_light",
+    "primary_palette": "Teal",
+    "primary_hue": "600",
+    "accent_palette": "Amber",
+    "theme_style": "Light",
+    "syntax": {
+        "background": "#fdf6e3",
+        "text": { "color": "#556b73", "style": "normal" },
+        "keyword": { "color": "#657a00", "style": "bold" },
+        "builtin": { "color": "#a57900", "style": "normal" },
+        "string": { "color": "#1a9188", "style": "normal" },
+        "number": { "color": "#c33682", "style": "normal" },
+        "comment": { "color": "#586e75", "style": "italic" },
+        "operator": { "color": "#657a00", "style": "normal" },
+        "definition": { "color": "#268bd2", "style": "bold" },
+        "line_numbers": { "color": "#eee8d5", "style": "normal" },
+        "current_line": { "color": "#f5eedb", "style": "normal" },
+        "selection": { "color": "#eee8d5", "style": "normal" },
+        "error": { "color": "#CC2222", "style": "bold" }
+    }
+}

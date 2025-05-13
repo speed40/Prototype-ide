@@ -1,0 +1,55 @@
+{
+    "language": "javascript",
+    "comment": "//",
+    "block_comment": ["/*", "*/"],
+    "indent": "  ",
+    "indent_triggers": ["{\\s*$", "\\(\\s*$", "=>\\s*$"],
+    "dedent_triggers": ["^\\s*}\\s*$", "^\\s*\\)\\s*;?\\s*$"],
+    "definitions": {
+        "function": "(?:(?:async|function)\\s+)?(\\w+)?\\s*\\(([^)]*)\\)\\s*\\{?",
+        "class": "class\\s+(\\w+)\\s*(?:extends\\s+\\w+)?\\s*\\{",
+        "arrow": "\\(([^)]*)\\)\\s*=>|(\\w+)\\s*=>"
+    },
+    "symbol_patterns": {
+        "variable": "(?:const|let|var)\\s+(\\w+)",
+        "param": "\\b(\\w+)\\s*(?=[,)])",
+        "import": "import\\s+(?:\\{([^}]+)\\}|([\\w*]+))\\s+from\\s+['\"]([^\"']+)['\"]"
+    },
+    "syntax_tokens": {
+        "keyword": "\\b(await|break|case|catch|class|const|continue|debugger|default|delete|do|else|export|extends|finally|for|function|if|import|in|instanceof|new|return|super|switch|this|throw|try|typeof|var|void|while|with|yield|async)\\b",
+        "string": "\"([^\"\\\\]|\\\\.)*\"|'([^'\\\\]|\\\\.)*'|`([^`\\\\]|\\\\.)*`",
+        "number": "\\b\\d+(?:\\.\\d+)?(?:e[+-]?\\d+)?\\b|\\b0x[\\da-fA-F]+\\b|\\b0o[0-7]+\\b|\\b0b[01]+\\b",
+        "comment": "//.*$|/\\*[\\s\\S]*?\\*/",
+        "function": "\\bfunction\\s+(\\w+)|(\\w+)\\s*\\([^)]*\\)\\s*=>|\\b(\\w+)\\s*=\\s*\\([^)]*\\)\\s*=>",
+        "class": "\\bclass\\s+(\\w+)",
+        "operator": "[+\\-*/%&|^~<>!]=?|\\?\\?|\\.\\.\\.|&&|\\|\\|",
+        "template": "\\$\\{[^}]+\\}",
+        "regex": "/(?:[^/\\\\]|\\\\.)+/[gimuy]*"
+    },
+    "suggestions_categorized": {
+        "keywords": [
+            "await", "break", "case", "catch", "class", "const", "continue",
+            "debugger", "default", "delete", "do", "else", "export", "extends",
+            "finally", "for", "function", "if", "import", "in", "instanceof",
+            "new", "return", "super", "switch", "this", "throw", "try", "typeof",
+            "var", "void", "while", "with", "yield", "async"
+        ],
+        "globals": [
+            "Array", "Boolean", "Date", "Error", "Function", "JSON", "Math",
+            "Number", "Object", "Promise", "Proxy", "Reflect", "RegExp",
+            "String", "Symbol", "Map", "Set", "WeakMap", "WeakSet", "ArrayBuffer",
+            "DataView", "Float32Array", "Float64Array", "Int8Array", "Uint8Array",
+            "Uint8ClampedArray", "Int16Array", "Uint16Array", "Int32Array",
+            "Uint32Array", "BigInt", "WeakRef", "FinalizationRegistry"
+        ],
+        "operators": [
+            "+", "-", "*", "/", "%", "**",
+            "++", "--",
+            "=", "+=", "-=", "*=", "/=", "%=", "**=",
+            "&=", "|=", "^=", "<<=", ">>=", ">>>=",
+            "&&", "||", "!", "??", "?.",
+            "==", "!=", "===", "!==",
+            "<", ">", "<=", ">="
+        ]
+    }
+}

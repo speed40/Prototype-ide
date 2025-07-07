@@ -5,11 +5,6 @@ import sys
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 import time
-# Removed hashlib and collections as they are now in history_manager.py
-# import hashlib
-# from collections import deque
-
-# Import the HistoryManager class from its new location
 from ui.utilities.history_manager import HistoryManager
 
 
@@ -25,12 +20,10 @@ from kivy.logger import Logger
 
 Window.softinput_mode = 'below_target'
 
-# Renamed the main App class
 class ShowcaseHistoryManager(App):
     status_text = StringProperty("Ready")
     pointer_text = StringProperty("")
     state_count = NumericProperty(0)
-    # Declare history as a regular attribute
     history = None
 
 
@@ -96,8 +89,6 @@ class ShowcaseHistoryManager(App):
         if text != self.current_text:
             self.current_text = text
             self.history.add_state(text)
-            # Status will update via update_ui or commit status
-            # self.status_text = "Editing..."
 
     def do_undo(self, *args):
         """Trigger undo action."""

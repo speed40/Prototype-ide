@@ -1,6 +1,6 @@
-# KT IDE
+# Prototype IDE
 
-A functional and customizable open-source IDE built with KivyMD. KT IDE provides a modern, cross-platform development environment with extensive customization options, syntax highlighting, and a modular architecture.
+A functional and customizable open-source IDE snippets built with KivyMD. It provides a modern, cross-platform development environment with extensive customization options, syntax highlighting, and a modular architecture.
 
 **License:** MIT Licensed - Ready to tweak, hack, and extend.
 
@@ -24,7 +24,6 @@ A functional and customizable open-source IDE built with KivyMD. KT IDE provides
 - **Interactive console** for code execution and debugging
 - **Customizable themes** with dark/light mode support
 - **Language profiles** for multiple programming languages
-- **Settings screen** with comprehensive configuration options
 - **History management** for tracking file and project history
 - **Dialog system** for user interactions and notifications
 
@@ -89,7 +88,7 @@ kt-ide/
 │   ├── editor.py          # Code editor component
 │   ├── console.py         # Interactive console
 │   ├── dialogs.py         # Dialog system
-│   ├── settings_screen.py # Settings interface
+│   ├── settings_screen.py (NOT INCLUDED)
 │   ├── tabs.py           # Tab management
 │   └── utilities/        # UI utility components
 ├── showcases/             # Demo applications
@@ -109,7 +108,6 @@ kt-ide/
 - **Editor**: Full-featured code editor with syntax highlighting
 - **Console**: Interactive console for code execution
 - **Dialogs**: Modal dialogs for user interactions
-- **Settings Screen**: Comprehensive settings management interface
 - **File Manager**: Project and file navigation system
 
 #### Theme System (`core/themes.py`)
@@ -176,7 +174,7 @@ kt-ide/
 - **Debugging**: Use for debugging and testing
 - **Output Display**: View execution results and errors
 
-### Theme Customization
+### Theme CUSTOMIZATION (If setting screen is crafted)
 1. Open Settings Screen
 2. Navigate to Theme section
 3. Select theme style (Dark/Light)
@@ -229,7 +227,6 @@ Use the showcase applications in the `showcases/` directory to test individual c
 - `showcase_editor.py` - Test editor functionality
 - `showcase_console.py` - Test console features  
 - `showcase_themes.py` - Test theme system
-- `showcase_settings_screen.py` - Test settings interface
 - `showcase_dialogs.py` - Test dialog system
 - `showcase_file_manager.py` - Test file management
 - `showcase_history_manager.py` - Test history features
